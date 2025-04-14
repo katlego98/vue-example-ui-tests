@@ -14,8 +14,8 @@ const locators = {
 export async function RegisterEntity(page : Page, user: UserModel) {
 
     await page.locator(locators.userNameField).pressSequentially(user.userName);
-    await page.locator(locators.userNameField).pressSequentially(user.email);
-    await page.locator(locators.userNameField).pressSequentially(user.password);
+    await page.locator(locators.emailField).pressSequentially(user.email);
+    await page.locator(locators.passwordField).pressSequentially(user.password);
 
     await page.locator(locators.finishSignUPBtn).click();
 

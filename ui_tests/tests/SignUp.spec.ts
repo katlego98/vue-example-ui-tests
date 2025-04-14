@@ -1,6 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { clickSignUp, assertLoggedinUser } from '../pages/LandingPage/LandingPage';
-import { assertLandingPageScreenload } from '../pages/ArticlePage/ArticlePage';
 import { RegisterEntity } from '../pages/SignUpPage/SignUpPage';
 import { UserModel } from '../models/UserModel';
 import users from "../testdata/Registration.json";

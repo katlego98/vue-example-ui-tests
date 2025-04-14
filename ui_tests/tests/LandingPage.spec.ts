@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { assertBackEndConnection, goToArticle } from '../pages/LandingPage/LandingPage';
-import { assertLandingPageScreenload } from '../pages/ArticlePage/ArticlePage';
+import { assertArticlePageScreenload } from '../pages/ArticlePage/ArticlePage';
 
 import { UserModel } from '../models/UserModel';
 import users from "../testdata/ArticleNoLogin.json";
@@ -15,6 +15,6 @@ testData.forEach(async article => {
             await page.waitForTimeout(2000)
             await assertBackEndConnection(page)
             await goToArticle(page, article)
-            await assertLandingPageScreenload(page, false)
+            await assertArticlePageScreenload(page, false)
     });
 })

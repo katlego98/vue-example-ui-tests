@@ -1,5 +1,8 @@
 export interface ArticleModel {
-    UserName: string,
-    Date: string,
-    ArticleTitle: string
+    UserName: string|null,
+    Date: string | null,
+    Title: string,
+    Summary: string| null;
+    Body: string | null;
+    Tags: string | null
 }

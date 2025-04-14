@@ -11,7 +11,7 @@ const locators = {
     articleDate: '.date',
     articleLink: 'a.preview-link[href="#/articles/$$/"]',
     homeBtn: 'a[href="#/"]',
-    newArticleBtn: 'a[href="#/editor"]',
+    newArticleBtn: 'ul.nav:nth-child(2) > li:nth-child(2) > a:nth-child(1)',
     settingsBtn: 'a[href="#/settings"]',
     profileBtn: 'a[href="#/@$$"]', // replace "$$" with UserName
     myFeedBtn: 'a[href="#/my-feed"]'
@@ -28,6 +28,14 @@ export async function clickSignIn(page: Page) {
 
 }
 
+export async function clickNewArticleBtn(page:Page) {
+
+    await expect(page.locator(locators.newArticleBtn)).toBeAttached();
+
+    await page.locator(locators.newArticleBtn).click();
+
+}
+
 export async function assertBackEndConnection(page:Page) {
     console.log(await page.locator(locators.articleMetaData).count())
 
@@ -37,8 +45,8 @@ export async function assertBackEndConnection(page:Page) {
 
 export async function goToArticle(page:Page, article: ArticleModel) {
     // assert article info
-    expect(page.locator(locators.authorLink.replace("$$", article.UserName))).toBeDefined();
-    expect(await page.locator(locators.authorLink.replace("$$", article.UserName)).innerText()).toBe(article.UserName);
+    expect(page.locator(locators.authorLink.replace("$$", article.UserName!))).toBeDefined();
+    expect(await page.locator(locators.authorLink.replace("$$", article.UserName!)).innerText()).toBe(article.UserName);
 
     expect(page.locator(locators.articleDate)).toBeDefined();
     expect(await page.locator(locators.articleDate).textContent()).toBe("April 9, 2025");
@@ -49,7 +57,7 @@ export async function goToArticle(page:Page, article: ArticleModel) {
         rgx.source,
         rgx.flags + "g",
       );
-    await page.locator(locators.articleDate.replace("$$", article.ArticleTitle.replaceAll(newPattern, "").replace(" ", "-"))).click()
+    await page.locator(locators.articleDate.replace("$$", article.Title.replaceAll(newPattern, "").replace(" ", "-"))).click()
 
 }
 
