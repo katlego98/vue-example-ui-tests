@@ -1,0 +1,3 @@
+1. ReadMe needs to say that python2 specifically is required
+2. node-gyp is trying to install optional modules. It should be noted that the errors given from running `yarn install` should be ignored as those modules are optional
+3. Utilization of test-data-id's could help differenciate between components that share the same css styling 
