@@ -1,13 +1,12 @@
 import { test } from '@playwright/test';
-import { assertLoggedinUser, clickNewArticleBtn, clickSignIn, clickSignUp} from '../pages/LandingPage/LandingPage';
+import { assertLoggedinUser, clickNewArticleBtn, clickSignIn} from '../pages/LandingPage/LandingPage';
 import {createNewArticle } from '../pages/CreateArticlePage/CreateArticle';
 
 import { UserModel } from '../models/UserModel';
 import users from "../testdata/Registration.json";
-import { RegisterEntity } from '../pages/SignUpPage/SignUpPage';
 import { ArticleModel } from '../models/ArticleModel';
 import { signIn } from '../pages/SignInPage/SignInPage';
-import { assertCreatedArticle } from '../pages/ArticlePage/ArticlePage';
+import { assertCreatedArticle, deleteArticle } from '../pages/ArticlePage/ArticlePage';
 import { randomUUID } from 'crypto';
 
 let testData: Array<UserModel> = users as Array<UserModel>;
@@ -32,7 +31,8 @@ testData.forEach(async user => {
             }
             await createNewArticle(page, newArticle)
             await assertCreatedArticle(page, newArticle)
-            // await assertArticlePageScreenload(page, true)
 
+            // Created Data Clean up
+            await deleteArticle(page)
     });
 })

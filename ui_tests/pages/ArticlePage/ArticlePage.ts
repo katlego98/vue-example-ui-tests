@@ -12,7 +12,8 @@ const locators = {
     followArticleUserBtn: 'button.btn-outline-secondary',
     favouriteArticleBtn: 'button.btn-outline-primary',
     commentField: 'textarea[placeholder="Write a comment..."]',
-    postCommentBtn: 'button.btn-primary'
+    postCommentBtn: 'button.btn-primary',
+    deleteArticle: 'div.article-meta:nth-child(2) > span:nth-child(3) > button:nth-child(3)'
 
 }
 
@@ -41,8 +42,8 @@ export async function assertArticlePageScreenload(page: Page, loggedIn: boolean 
         expect(page.locator(locators.postCommentBtn)).toBeDefined()
 
     }else {
-        expect(await page.locator(locators.signInBtn)).toHaveCount(1)
-        expect(await page.locator(locators.signUpBtn)).toHaveCount(1)
+        expect(page.locator(locators.signInBtn)).toHaveCount(1)
+        expect(page.locator(locators.signUpBtn)).toHaveCount(1)
         expect(page.locator(locators.articleContent)).toBeDefined()
         expect(page.locator(locators.articleHeader)).toBeDefined()
     }
@@ -63,4 +64,8 @@ export async function assertCreatedArticle(page:Page, article: ArticleModel) {
     expect(page.locator(locators.commentField)).toBeDefined()
     expect(page.locator(locators.commentField)).toBeEditable()
     expect(page.locator(locators.postCommentBtn)).toBeDefined()
+}
+
+export async function deleteArticle(page:Page) {
+    await page.locator(locators.deleteArticle).click()
 }

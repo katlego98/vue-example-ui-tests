@@ -1,8 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test} from '@playwright/test';
 import { assertBackEndConnection, goToArticle } from '../pages/LandingPage/LandingPage';
 import { assertArticlePageScreenload } from '../pages/ArticlePage/ArticlePage';
-
-import { UserModel } from '../models/UserModel';
 import users from "../testdata/ArticleNoLogin.json";
 import { ArticleModel } from '../models/ArticleModel';
 
