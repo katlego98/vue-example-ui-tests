@@ -49,7 +49,7 @@ export async function goToArticle(page:Page, article: ArticleModel) {
     expect(await page.locator(locators.authorLink.replace("$$", article.UserName!)).innerText()).toBe(article.UserName);
 
     expect(page.locator(locators.articleDate)).toBeDefined();
-    expect(await page.locator(locators.articleDate).textContent()).toBe("April 9, 2025");
+    expect(await page.locator(locators.articleDate).first().textContent()).toBe("April 9, 2025");
     
     // click article URL
     let rgx = /\W/
@@ -57,7 +57,7 @@ export async function goToArticle(page:Page, article: ArticleModel) {
         rgx.source,
         rgx.flags + "g",
       );
-    await page.locator(locators.articleDate.replace("$$", article.Title.replaceAll(newPattern, "").replace(" ", "-"))).click()
+    await page.locator(locators.articleDate.replace("$$", article.Title.replaceAll(newPattern, "").replace(" ", "-"))).first().click()
 
 }
 

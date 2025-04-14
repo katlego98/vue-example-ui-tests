@@ -1,0 +1,12 @@
+[    
+    {
+        "userName": "User2",
+        "email":"<script>alert(123);</script>",
+        "password": "password"
+    },
+    {
+        "userName": "User2",
+        "email":"WHERE 1=1 AND 1=0#'",
+        "password": "password"
+    }
+]
